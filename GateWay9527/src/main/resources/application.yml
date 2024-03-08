@@ -1,0 +1,17 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: Gateway
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+       service-name: ${spring.application.name}
+    gateway:
+      routes:
+        - id: UserModel1
+          uri: http://127.0.0.1:8082
+          predicates:
+            - Path=/users/hello/**
